@@ -469,6 +469,36 @@ Used by `/app/scan` and `/app/shipment/record` endpoints.
 
 ---
 
+## Additional Endpoints
+
+*For enhanced dashboard functionality, search capabilities, and performance optimizations, see:*
+
+**📊 [Additional API Endpoints Documentation](Additional-API-Endpoints.md)**
+
+This separate document covers **dashboard-specific endpoints** implemented to address critical performance bottlenecks identified during comprehensive testing of 17 dashboard pages. These endpoints solve specific dashboard requirements while maintaining complete backward compatibility.
+
+### Performance Optimization Endpoints
+- **`GET /app/tealine/pending-with-calculations`**: Replaces 542 API calls with single optimized call (99.8% reduction, 30+ seconds → 1.5 seconds)
+- **`GET /app/admin/tealine/inventory-complete`**: Complete inventory with allocation tracking (93% performance improvement)
+
+### Search Enhancement Endpoints  
+- **Flavorsheet Search**: `GET /app/admin/flavorsheet/search`, `/app/flavorsheet/search`, `/app/flavorsheet/batch/search`
+- **Herbline Search**: `GET /app/admin/herbline/search`, `/app/herbline/search`
+- **Features**: Server-side pattern matching, case-insensitive search, combined filtering
+
+### Pagination Enhancement
+- **`GET /app/admin/blendsheet/paginated`**: Handles large datasets (818+ items) with memory-efficient pagination
+
+### Key Design Principles
+- **Dashboard-First Design**: Optimized specifically for dashboard frontend performance requirements
+- **100% Backward Compatibility**: Original endpoints remain unchanged and fully functional
+- **Separation-Based Approach**: Enhanced endpoints use path extensions (e.g., `/search`, `/paginated`, `/inventory-complete`)
+- **Zero Risk Migration**: Frontend teams can adopt enhanced endpoints progressively without breaking existing functionality
+
+These endpoints directly implement solutions from the dashboard requirements document (`Claude/Extras/dashboard-api-requirements-v3.md`) and transform previously unusable dashboard pages into responsive, real-time interfaces.
+
+---
+
 ## Notes
 
 1. **Quantity Handling**: AWS-Manager stores quantities in grams internally but exposes as kg; Central-Handler uses direct weight values
