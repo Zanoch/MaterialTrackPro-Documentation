@@ -473,7 +473,7 @@ Used by `/app/scan` and `/app/shipment/record` endpoints.
 
 *For enhanced dashboard functionality, search capabilities, and performance optimizations, see:*
 
-**📊 [Additional API Endpoints Documentation](Additional-API-Endpoints.md)**
+**📊 [Dashboard API Endpoints Documentation](Dashboard-API-Endpoints.md)**
 
 This separate document covers **dashboard-specific endpoints** implemented to address critical performance bottlenecks identified during comprehensive testing of 17 dashboard pages. These endpoints solve specific dashboard requirements while maintaining complete backward compatibility.
 
@@ -488,6 +488,11 @@ This separate document covers **dashboard-specific endpoints** implemented to ad
 
 ### Pagination Enhancement
 - **`GET /app/admin/blendsheet/paginated`**: Handles large datasets (818+ items) with memory-efficient pagination
+
+### Analytics & Intelligence Enhancement
+- **`GET /app/flavorsheet/stats`**: Production statistics and completion analytics for dashboard KPIs
+- **`GET /app/flavorsheet/:flavorsheetNo/composition`**: Detailed ingredient composition analysis for quality control
+- **`GET /app/herbline/analytics`**: Inventory analytics and completion metrics for procurement planning
 
 ### Key Design Principles
 - **Dashboard-First Design**: Optimized specifically for dashboard frontend performance requirements
