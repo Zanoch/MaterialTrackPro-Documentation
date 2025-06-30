@@ -493,6 +493,7 @@ This separate document covers **dashboard-specific endpoints** implemented to ad
 - **`GET /app/flavorsheet/stats`**: Production statistics and completion analytics for dashboard KPIs
 - **`GET /app/flavorsheet/:flavorsheetNo/composition`**: Detailed ingredient composition analysis for quality control
 - **`GET /app/herbline/analytics`**: Inventory analytics and completion metrics for procurement planning
+- **`GET /app/blendsheet/summary`**: Comprehensive blendsheet analytics with calculated weights, batch tracking, and production efficiency metrics
 
 ### Key Design Principles
 - **Dashboard-First Design**: Optimized specifically for dashboard frontend performance requirements
