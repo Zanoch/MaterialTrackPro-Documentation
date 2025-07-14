@@ -196,7 +196,7 @@ The AWS-Manager implements a comprehensive role-based access control (RBAC) syst
 4. **SEEDUWA-OFFICER** → Create status update events (`POST /order/shipment/event`) + create trader requests (`POST /trader`)
 5. **TRADER-OFFICER** → Update trader request status (`PUT /trader`), escalate complex cases
 6. **TRADER-SUPERVISOR** → Update status of elevated requests (`PUT /trader`)
-7. **[External Shipping Process]** → Physical shipment (separate project)
+7. **[Device-Panel Process]** → Physical shipment dispatch operations
 8. **SEEDUWA-ADMIN** → Retrieve shipment records (`GET /order/record/shipment`) for frontend document generation
 9. **GRANDPASS-GATEPASS** → Create shipment acceptance events (`POST /order/shipment/event`), retrieve records for verification (`GET /order/record/shipment`)
 10. **GRANDPASS-DEV-MACHINE** → Create parcel allocations (`POST /order/record/parcel`), update schedule completion (`PUT /order/schedule`)
@@ -308,7 +308,7 @@ Retrieved via `GET /admin/group`:
 ### Connected MTP Platform Projects
 - **AWS-Manager**: Serverless backend handling order management and user administration
 - **Central-Handler**: Node.js server managing tea processing operations
-- **[Shipping Process Project]**: Separate project handling physical shipment operations (currently unavailable)
+- **Device-Panel**: Electron desktop application for hardware integration and physical operations
 
 ### Central-Handler System Integration
 **Workflow Integration** (Primary Functions):

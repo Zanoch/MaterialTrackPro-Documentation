@@ -73,6 +73,8 @@ Retrieves tealine items with optional filtering.
 ]
 ```
 
+**Note:** Weight is calculated dynamically as the sum of `(gross_weight - bag_weight)` from all related `blendbalance_record` entries.
+
 **Response (with parameters):**
 ```json
 {
@@ -316,10 +318,11 @@ Creates a new blendbalance item.
 {
   "item_code": "string",
   "blend_code": "string",
-  "weight": "number",
   "transfer_id": "string"
 }
 ```
+
+**Note:** Weight parameter removed in v2025.07.09 to enable real-time barcode printing. Weight is now calculated dynamically from individual records.
 
 **Response:**
 ```json
@@ -355,6 +358,7 @@ Retrieves blendbalance items.
   "item_code": "string",
   "created_ts": "bigint",
   "blend_code": "string",
+  "weight": "number",
   "transfer_id": "string",
   "record_list": [
     {
@@ -1155,7 +1159,9 @@ Updates herbline record status to DISPATCHED.
 ### Blendbalance Operations
 
 #### GET `/app/blendbalance`
-Retrieves incomplete blendbalance items (where recorded weight < expected weight).
+Retrieves blendbalance items with dynamically calculated weight.
+
+**Note:** Previously filtered incomplete items, now returns all items with calculated weight from records.
 
 **Query Parameters (recommended filters):**
 - `created_ts`: Creation timestamp
@@ -1168,6 +1174,7 @@ Retrieves incomplete blendbalance items (where recorded weight < expected weight
     "item_code": "string",
     "created_ts": "bigint",
     "blend_code": "string",
+    "weight": "number",
     "transfer_id": "string"
   }
 ]
@@ -1179,6 +1186,7 @@ Retrieves incomplete blendbalance items (where recorded weight < expected weight
   "item_code": "string",
   "created_ts": "bigint",
   "blend_code": "string",
+  "weight": "number",
   "transfer_id": "string",
   "record_list": [
     {

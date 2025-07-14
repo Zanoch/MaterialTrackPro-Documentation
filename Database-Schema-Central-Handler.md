@@ -93,8 +93,9 @@ The public schema handles all tea processing operations, from raw materials to f
 | `item_code` | `text` | PRIMARY KEY, NOT NULL | Unique item identifier |
 | `created_ts` | `bigint` | PRIMARY KEY, NOT NULL | Creation timestamp (Unix ms) |
 | `blend_code` | `text` | NOT NULL | Blend classification |
-| `weight` | `numeric(1000,2)` | NOT NULL | Available weight |
 | `transfer_id` | `text` | NOT NULL | Transfer reference |
+
+**Note**: Weight column removed in v2025.07.09 to enable real-time barcode printing. Weight is now calculated dynamically as the sum of `(gross_weight - bag_weight)` from related `blendbalance_record` entries.
 
 **Primary Key**: `created_ts`, `item_code`
 **Foreign Key**: `item_code`, `created_ts` → `item(item_code, created_ts)`
@@ -477,15 +478,20 @@ record → allocate_shipment → allocate_parcel (refinement)
 - Raises error if limit exceeded
 - Applied to `tealine_record` on INSERT
 
-### `record_blendbalance() RETURNS trigger`
+### `record_blendbalance() RETURNS trigger` ~~REMOVED~~
 
-**Purpose**: Validate blendbalance weight limits
+**Purpose**: ~~Validate blendbalance weight limits~~ **REMOVED in v2025.07.09**
 
-**Behavior**:
-- Checks cumulative weight against `blendbalance.weight`
-- Calculates available weight from existing records
-- Raises error if weight limit exceeded
-- Applied to `blendbalance_record` on INSERT
+**Removal Reason**: 
+- Caused circular dependency preventing real-time barcode printing
+- Weight validation conflicts with immediate record creation
+- Replaced with dynamic weight calculation in API responses
+
+**Previous Behavior** (now removed):
+- ~~Checks cumulative weight against `blendbalance.weight`~~
+- ~~Calculates available weight from existing records~~
+- ~~Raises error if weight limit exceeded~~
+- ~~Applied to `blendbalance_record` on INSERT~~
 
 ### `record_location(herbline_flag) RETURNS trigger`
 
