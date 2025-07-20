@@ -56,14 +56,9 @@ The public schema handles all order management operations including planning, re
 | `requirement` | `integer` | NOT NULL | Required quantity |
 | `plan_start` | `date` | NOT NULL | Planned start date |
 | `plan_end` | `date` | NOT NULL | Planned completion date |
-| `item_code` | `text` | NOT NULL | Blend code for tea processing (BLT/BTL/FLT + 5 digits) |
 
 **Primary Key**: `order_code`
 
-**Schema Changes (2025-07-08)**:
-- Added `item_code` column to support blendbalance creation feature
-- Populated from `order_plan_raw.item_code` with regex processing to extract clean codes
-- Processing rules: BLT/BTL/FLT codes extract pattern, others unchanged
 
 ##### `order_plan_raw`
 

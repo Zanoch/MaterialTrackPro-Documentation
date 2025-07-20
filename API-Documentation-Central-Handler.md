@@ -73,7 +73,6 @@ Retrieves tealine items with optional filtering.
 ]
 ```
 
-**Note:** Weight is calculated dynamically as the sum of `(gross_weight - bag_weight)` from all related `blendbalance_record` entries.
 
 **Response (with parameters):**
 ```json
@@ -318,11 +317,11 @@ Creates a new blendbalance item.
 {
   "item_code": "string",
   "blend_code": "string",
-  "transfer_id": "string"
+  "transfer_id": "string",
+  "weight": "number"
 }
 ```
 
-**Note:** Weight parameter removed in v2025.07.09 to enable real-time barcode printing. Weight is now calculated dynamically from individual records.
 
 **Response:**
 ```json
